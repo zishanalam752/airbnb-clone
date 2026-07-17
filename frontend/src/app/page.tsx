@@ -5,12 +5,14 @@ import { Header } from '../components/Header';
 import { CategoryBar } from '../components/CategoryBar';
 import { ListingCard } from '../components/ListingCard';
 import { FiltersModal } from '../components/FiltersModal';
+import { MapView } from '../components/MapView';
 import { useApp } from '../context/AppContext';
-import { SlidersHorizontal, RotateCcw } from 'lucide-react';
+import { SlidersHorizontal, RotateCcw, Map as MapIcon, List as ListIcon } from 'lucide-react';
 
 export default function Home() {
   const { listings, loadingListings, searchFilters, resetSearchFilters } = useApp();
   const [showFilters, setShowFilters] = useState(false);
+  const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
 
   // Check if search filters are active
   const hasActiveFilters = 
@@ -89,6 +91,8 @@ export default function Home() {
               Reset Search & Filters
             </button>
           </div>
+        ) : viewMode === 'map' ? (
+          <MapView listings={listings} />
         ) : (
           /* Property Grid */
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -97,6 +101,26 @@ export default function Home() {
             ))}
           </div>
         )}
+
+        {/* Floating Map Toggle Button */}
+        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40">
+          <button
+            onClick={() => setViewMode(prev => prev === 'list' ? 'map' : 'list')}
+            className="flex items-center gap-2 bg-zinc-950 text-white dark:bg-zinc-50 dark:text-zinc-950 font-bold text-xs px-5 py-3 rounded-full hover:scale-105 active:scale-95 shadow-xl transition-all duration-200"
+          >
+            {viewMode === 'list' ? (
+              <>
+                <MapIcon className="w-4 h-4 fill-white dark:fill-zinc-950" />
+                Show map
+              </>
+            ) : (
+              <>
+                <ListIcon className="w-4 h-4" />
+                Show list
+              </>
+            )}
+          </button>
+        </div>
       </main>
 
       {/* Slide Filters Modal */}

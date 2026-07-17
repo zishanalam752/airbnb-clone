@@ -69,7 +69,7 @@ export const Header: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-zinc-100 px-6 py-4 shadow-sm dark:bg-zinc-950 dark:border-zinc-900 transition-colors">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-        
+
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 text-rose-500 font-bold text-2xl tracking-tight">
           <svg
@@ -85,11 +85,12 @@ export const Header: React.FC = () => {
         </Link>
 
         {/* Search Pills */}
-        <div 
+        <div
           onClick={() => setShowSearchModal(true)}
-          className="flex items-center border border-zinc-200 rounded-full py-2 pl-6 pr-2 shadow-sm hover:shadow-md cursor-pointer transition max-w-lg flex-1 dark:border-zinc-800 dark:bg-zinc-900"
+          className="flex items-center border border-zinc-200 rounded-full py-2 pl-4 sm:pl-6 pr-2 shadow-sm hover:shadow-md cursor-pointer transition max-w-lg flex-1 dark:border-zinc-800 dark:bg-zinc-900"
         >
-          <div className="flex-1 grid grid-cols-3 text-xs divide-x divide-zinc-200 dark:divide-zinc-800 text-left">
+          {/* Desktop/Tablet 3-column split view */}
+          <div className="hidden sm:grid flex-1 grid-cols-3 text-xs divide-x divide-zinc-200 dark:divide-zinc-800 text-left">
             <div className="pr-2 truncate">
               <span className="font-semibold text-zinc-900 dark:text-zinc-100 block">Where</span>
               <span className="text-zinc-500 font-light truncate">{searchFilters.location || 'Anywhere'}</span>
@@ -107,18 +108,26 @@ export const Header: React.FC = () => {
               </span>
             </div>
           </div>
-          <div className="bg-rose-500 text-white p-2.5 rounded-full hover:bg-rose-600 transition flex items-center justify-center">
+
+          {/* Mobile simple view */}
+          <div className="flex sm:hidden flex-1 text-xs text-left px-1 truncate">
+            <span className="font-semibold text-zinc-850 dark:text-zinc-250 truncate">
+              {searchFilters.location || 'Anywhere'} • {searchFilters.startDate ? 'Selected dates' : 'Any week'} • {searchFilters.guests ? `${searchFilters.guests} guests` : 'Add guests'}
+            </span>
+          </div>
+
+          <div className="bg-rose-500 text-white p-2.5 rounded-full hover:bg-rose-600 transition flex items-center justify-center ml-2 flex-shrink-0">
             <Search className="w-4 h-4" />
           </div>
         </div>
 
         {/* Right Nav */}
         <div className="flex items-center gap-3">
-          
+
           {/* Dashboard Toggle / Host mode */}
           {activeUser?.role === 'host' && (
-            <Link 
-              href={role === 'host' ? '/dashboard' : '/'} 
+            <Link
+              href={role === 'host' ? '/dashboard' : '/'}
               onClick={() => {
                 if (role !== 'host') {
                   toggleRole(); // toggle active app state view
@@ -144,9 +153,9 @@ export const Header: React.FC = () => {
           <div className="relative">
             <button
               onClick={() => setShowUserMenu(!showUserMenu)}
-              className="flex items-center gap-3 border border-zinc-200 rounded-full p-2 hover:shadow-md transition bg-white dark:border-zinc-800 dark:bg-zinc-900"
+              className="flex items-center gap-1 sm:gap-3 border border-zinc-200 rounded-full p-1 sm:p-2 hover:shadow-md transition bg-white dark:border-zinc-800 dark:bg-zinc-900 flex-shrink-0"
             >
-              <Menu className="w-5 h-5 text-zinc-500 ml-1" />
+              <Menu className="w-5 h-5 text-zinc-500 ml-1 hidden sm:block" />
               {activeUser?.avatar_url ? (
                 <img
                   src={activeUser.avatar_url}
@@ -171,18 +180,18 @@ export const Header: React.FC = () => {
                     Active Persona: {role.toUpperCase()}
                   </span>
                 </div>
-                
+
                 <div className="py-1">
-                  <Link 
-                    href="/trips" 
+                  <Link
+                    href="/trips"
                     className="block px-4 py-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition"
                     onClick={() => setShowUserMenu(false)}
                   >
                     My Trips (Bookings)
                   </Link>
                   {activeUser?.role === 'host' && (
-                    <Link 
-                      href="/dashboard" 
+                    <Link
+                      href="/dashboard"
                       className="block px-4 py-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition font-medium text-rose-500"
                       onClick={() => {
                         if (role !== 'host') toggleRole();
@@ -204,9 +213,8 @@ export const Header: React.FC = () => {
                         changeActiveUser(user.id);
                         setShowUserMenu(false);
                       }}
-                      className={`w-full text-left px-4 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition flex items-center gap-2 ${
-                        activeUser?.id === user.id ? 'font-bold text-rose-500 bg-rose-50/50 dark:bg-rose-950/20' : ''
-                      }`}
+                      className={`w-full text-left px-4 py-2 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition flex items-center gap-2 ${activeUser?.id === user.id ? 'font-bold text-rose-500 bg-rose-50/50 dark:bg-rose-950/20' : ''
+                        }`}
                     >
                       <img src={user.avatar_url} className="w-5 h-5 rounded-full object-cover" />
                       <div className="flex-1 truncate">
@@ -233,14 +241,14 @@ export const Header: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
             className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl p-6 relative dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto cursor-default"
           >
-            <button 
+            <button
               onClick={() => setShowSearchModal(false)}
               className="absolute right-6 top-6 p-1.5 hover:bg-zinc-100 rounded-full transition dark:hover:bg-zinc-800"
             >
               <X className="w-5 h-5" />
             </button>
             <h2 className="text-xl font-bold mb-6 text-zinc-900 dark:text-zinc-100">Find your next stay</h2>
-            
+
             <form onSubmit={handleSearchSubmit} className="space-y-4">
               {/* Location Input */}
               <div className="relative">
@@ -264,10 +272,10 @@ export const Header: React.FC = () => {
                   <>
                     <div className="fixed inset-0 z-40" onClick={() => setShowLocationsDropdown(false)} />
                     <div className="absolute left-0 right-0 mt-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl shadow-xl z-50 max-h-60 overflow-y-auto divide-y divide-zinc-100 dark:divide-zinc-700">
-                      {availableLocations.filter(loc => 
+                      {availableLocations.filter(loc =>
                         loc.toLowerCase().includes((location || '').toLowerCase())
                       ).length > 0 ? (
-                        availableLocations.filter(loc => 
+                        availableLocations.filter(loc =>
                           loc.toLowerCase().includes((location || '').toLowerCase())
                         ).map((loc) => (
                           <button

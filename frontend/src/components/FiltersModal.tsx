@@ -77,11 +77,11 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({ isOpen, onClose }) =
         onClick={(e) => e.stopPropagation()}
         className="bg-white rounded-3xl w-full max-w-xl shadow-2xl p-6 relative dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 animate-in zoom-in-95 duration-200 cursor-default"
       >
-        
+
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-zinc-150 dark:border-zinc-800">
-          <button 
-            onClick={onClose} 
+          <button
+            onClick={onClose}
             className="p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition"
           >
             <X className="w-5 h-5" />
@@ -92,12 +92,12 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({ isOpen, onClose }) =
 
         {/* Content */}
         <div className="py-6 space-y-6 max-h-[70vh] overflow-y-auto pr-2 no-scrollbar">
-          
+
           {/* Price Range */}
           <div>
             <h3 className="font-semibold text-base mb-1">Price range</h3>
             <p className="text-zinc-500 text-xs font-light mb-4">Nightly prices before fees and taxes</p>
-            
+
             <div className="flex items-center gap-4">
               <div className="flex-1 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-2 bg-zinc-50 dark:bg-zinc-800">
                 <span className="text-[10px] uppercase font-bold text-zinc-400 block">Minimum</span>
@@ -140,11 +140,10 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({ isOpen, onClose }) =
                     key={type}
                     type="button"
                     onClick={() => setPropertyType(isSelected ? '' : type)}
-                    className={`px-4 py-2 rounded-xl text-sm border transition ${
-                      isSelected
+                    className={`px-4 py-2 rounded-xl text-sm border transition ${isSelected
                         ? 'bg-rose-500 border-rose-500 text-white font-semibold'
                         : 'border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-750 dark:text-zinc-200'
-                    }`}
+                      }`}
                   >
                     {type}
                   </button>
@@ -160,17 +159,16 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({ isOpen, onClose }) =
               {AMENITIES_LIST.map((amenity) => {
                 const isSelected = selectedAmenities.includes(amenity);
                 return (
-                  <button 
+                  <button
                     key={amenity}
                     type="button"
                     onClick={() => handleToggleAmenity(amenity)}
                     className="flex items-center gap-2.5 p-2.5 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800 text-left transition w-full"
                   >
-                    <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${
-                      isSelected 
-                        ? 'bg-rose-500 border-rose-500 text-white' 
+                    <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${isSelected
+                        ? 'bg-rose-500 border-rose-500 text-white'
                         : 'border-zinc-350 dark:border-zinc-600'
-                    }`}>
+                      }`}>
                       {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                     </div>
                     <span className="text-sm font-light text-zinc-700 dark:text-zinc-300">{amenity}</span>

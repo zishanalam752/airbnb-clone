@@ -67,7 +67,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
         },
         activeUser.id
       );
-      
+
       setBookingSuccess(true);
       addToast('Booking successfully created! Your stay is confirmed.', 'success');
       setTimeout(() => {
@@ -93,7 +93,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
         onClick={(e) => e.stopPropagation()}
         className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl relative overflow-hidden dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 animate-in zoom-in-95 duration-200 cursor-default"
       >
-        
+
         {/* Success Screen */}
         {bookingSuccess ? (
           <div className="p-12 flex flex-col items-center justify-center text-center">
@@ -107,13 +107,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-zinc-150 dark:divide-zinc-800">
-            
+
             {/* Left side: Booking Details */}
             <div className="p-6 space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold">Confirm and pay</h2>
-                <button 
-                  onClick={onClose} 
+                <button
+                  onClick={onClose}
                   className="md:hidden p-1 bg-zinc-100 dark:bg-zinc-800 rounded-full"
                 >
                   <X className="w-4 h-4" />
@@ -172,8 +172,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             {/* Right side: Payment form */}
             <div className="p-6 flex flex-col justify-between">
               {/* Close Button on desktop */}
-              <button 
-                onClick={onClose} 
+              <button
+                onClick={onClose}
                 className="hidden md:flex absolute top-6 right-6 p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition"
               >
                 <X className="w-5 h-5" />
