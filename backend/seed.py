@@ -187,9 +187,9 @@ def seed_db():
             property_type="Mansion",
             amenities=["Wifi", "Pool", "Kitchen", "Air conditioning", "Gym", "Breakfast included"],
             images=[
-                "https://images.unsplash.com/photo-1598977123418-45f04b01d1bb?w=800",
+                "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=800",
                 "https://images.unsplash.com/photo-1585983224974-084a8e065e76?w=800",
-                "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"
+                "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800"
             ],
             host_id=rajesh.id,
             rating=4.96,
