@@ -161,7 +161,9 @@ export const Header: React.FC = () => {
             </button>
 
             {showUserMenu && (
-              <div className="absolute right-0 mt-2.5 w-64 bg-white rounded-2xl shadow-xl border border-zinc-100 py-3 text-zinc-800 z-50 text-sm dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-200">
+              <>
+                <div className="fixed inset-0 z-40" onClick={() => setShowUserMenu(false)} />
+                <div className="absolute right-0 mt-2.5 w-64 bg-white rounded-2xl shadow-xl border border-zinc-100 py-3 text-zinc-800 z-50 text-sm dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-200">
                 <div className="px-4 py-2 border-b border-zinc-100 dark:border-zinc-800">
                   <span className="block font-semibold">{activeUser?.name}</span>
                   <span className="block text-xs text-zinc-400 truncate">{activeUser?.email}</span>
@@ -215,6 +217,7 @@ export const Header: React.FC = () => {
                   ))}
                 </div>
               </div>
+            </>
             )}
           </div>
         </div>
@@ -222,8 +225,14 @@ export const Header: React.FC = () => {
 
       {/* Expanded Search Modal */}
       {showSearchModal && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-start justify-center pt-20 px-4 transition-opacity">
-          <div className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl p-6 relative dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
+        <div 
+          onClick={() => setShowSearchModal(false)}
+          className="fixed inset-0 bg-black/50 z-50 flex items-start justify-center pt-20 px-4 transition-opacity cursor-pointer"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-3xl w-full max-w-2xl shadow-2xl p-6 relative dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto cursor-default"
+          >
             <button 
               onClick={() => setShowSearchModal(false)}
               className="absolute right-6 top-6 p-1.5 hover:bg-zinc-100 rounded-full transition dark:hover:bg-zinc-800"

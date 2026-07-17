@@ -69,8 +69,14 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({ isOpen, onClose }) =
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-[999] flex items-center justify-center p-4 backdrop-blur-xs transition-opacity animate-in fade-in duration-200">
-      <div className="bg-white rounded-3xl w-full max-w-xl shadow-2xl p-6 relative dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 animate-in zoom-in-95 duration-200">
+    <div 
+      onClick={onClose}
+      className="fixed inset-0 bg-black/50 z-[999] flex items-center justify-center p-4 backdrop-blur-xs transition-opacity animate-in fade-in duration-200 cursor-pointer"
+    >
+      <div 
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white rounded-3xl w-full max-w-xl shadow-2xl p-6 relative dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 animate-in zoom-in-95 duration-200 cursor-default"
+      >
         
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-zinc-150 dark:border-zinc-800">
