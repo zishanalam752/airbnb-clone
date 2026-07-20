@@ -162,9 +162,3 @@ Stores guest experience reviews.
     ```
 4.  Open the browser to [http://localhost:3000](http://localhost:3000).
 
----
-
-## Deployment Instructions
-
-*   **Frontend**: Can be built for static/node hosting (e.g. Vercel, Netlify) by setting the environment variable `NEXT_PUBLIC_API_URL` to point to the hosted backend domain URL.
-*   **Backend**: Can be deployed to services like Render or Railway. Simply run `uvicorn main:app --host 0.0.0.0 --port $PORT` and connect an online PostgreSQL database URL environment variable (`DATABASE_URL`).
